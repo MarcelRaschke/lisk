@@ -1,131 +1,78 @@
 {
-	"name": "lisk",
-	"version": "1.5.0-alpha.0",
-	"description": "Lisk blockchain application platform",
-	"author":
-		"Lisk Foundation <admin@lisk.io>, lightcurve GmbH <admin@lightcurve.io>",
-	"license": "GPL-3.0",
+	"name": "lisk-sdk-mono-repo",
 	"private": true,
-	"keywords": ["cryptocurrency", "blockchain", "lisk", "nodejs", "javascript"],
-	"homepage": "https://github.com/LiskHQ/lisk#readme",
+	"version": "0.1.0",
+	"description": "Reusable packages for use with the Lisk ecosystem",
+	"author": "Lisk Foundation <admin@lisk.io>, lightcurve GmbH <admin@lightcurve.io>",
+	"license": "Apache-2.0",
+	"keywords": [
+		"lisk",
+		"blockchain"
+	],
+	"homepage": "https://github.com/LiskHQ/lisk-sdk#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/LiskHQ/lisk.git"
+		"url": "git+https://github.com/LiskHQ/lisk-sdk.git"
 	},
 	"bugs": {
-		"url": "https://github.com/LiskHQ/lisk/issues"
+		"url": "https://github.com/LiskHQ/lisk-sdk/issues"
 	},
 	"engines": {
-		"node": "10.14.1",
-		"npm": "6.4.1"
+		"node": ">=12.13.0 <=12",
+		"npm": ">=6.12.0"
 	},
-	"main": "app.js",
+	"workspaces": {
+		"packages": [
+			"framework",
+			"framework-plugins/*",
+			"elements/*",
+			"commander",
+			"sdk",
+			"protocol-specs"
+		],
+		"nohoist": [
+			"**@types/mocha",
+			"**@types/jest",
+			"**jest-extended",
+			"**@types/jest-when"
+		]
+	},
 	"scripts": {
-		"start": "node app.js",
-		"console": "node scripts/console.js",
-		"lint": "./node_modules/.bin/eslint .",
-		"lint:fix": "./node_modules/.bin/eslint --fix .",
-		"format":
-			"prettier --write \"./*.{js,json,md}\" \"{api,config,db,docs,helpers,logic,modules,schema,scripts,tasks,test}{,/**}/*.{js,json,md}\"",
-		"test": "./node_modules/.bin/grunt",
-		"grunt": "./node_modules/.bin/grunt",
-		"mocha": "./node_modules/.bin/mocha",
-		"docs:build": "jsdoc -c docs/conf.json --verbose --pedantic",
-		"docs:serve": "./node_modules/.bin/http-server docs/jsdoc/",
-		"check:dependencies": "./node_modules/.bin/snyk protect",
-		"prepublishOnly": "npm run check:dependencies"
-	},
-	"dependencies": {
-		"async": "2.6.1",
-		"bignumber.js": "8.0.2",
-		"bluebird": "3.5.3",
-		"body-parser": "1.18.3",
-		"bytebuffer": "5.0.1",
-		"change-case": "3.1.0",
-		"colors": "1.3.3",
-		"commander": "2.19.0",
-		"compression": "1.7.3",
-		"cors": "2.8.5",
-		"debug": "4.1.1",
-		"deep-diff": "1.0.2",
-		"express": "4.16.4",
-		"express-domain-middleware": "0.1.0",
-		"express-query-int": "3.0.0",
-		"express-rate-limit": "2.8.0",
-		"fs-extra": "7.0.1",
-		"ip": "1.1.5",
-		"js-yaml": "3.12.1",
-		"json-refs": "3.0.12",
-		"lisk-commander": "2.0.0",
-		"lisk-elements": "1.0.0",
-		"lodash": "4.17.11",
-		"lisk-newrelic": "LiskHQ/lisk-newrelic#d1ca762",
-		"method-override": "3.0.0",
-		"newrelic": "5.0.0",
-		"pm2": "3.2.8",
-		"pg-monitor": "1.1.0",
-		"pg-promise": "8.5.4",
-		"popsicle": "9.1.0",
-		"randomstring": "1.1.5",
-		"redis": "2.8.0",
-		"rimraf": "2.6.3",
-		"semver": "5.6.0",
-		"socket.io": "2.2.0",
-		"socketcluster": "14.3.3",
-		"socketcluster-client": "14.2.1",
-		"sodium-native": "2.2.4",
-		"strftime": "0.10.0",
-		"swagger-node-runner": "0.7.3",
-		"sway": "2.0.5",
-		"tempy": "0.2.1",
-		"valid-url": "1.0.9",
-		"wamp-socket-cluster": "2.0.0-beta.4",
-		"z-schema": "3.24.2"
-	},
-	"devDependencies": {
-		"browserify-bignum": "1.3.0-2",
-		"chai": "4.2.0",
-		"chai-as-promised": "7.1.1",
-		"co-mocha": "1.2.2",
-		"coveralls": "3.0.2",
-		"eslint": "5.12.0",
-		"eslint-config-airbnb-base": "13.1.0",
-		"eslint-config-lisk-base": "1.0.0",
-		"eslint-plugin-chai-expect": "2.0.1",
-		"eslint-plugin-import": "2.14.0",
-		"eslint-plugin-mocha": "5.2.1",
-		"faker": "4.1.0",
-		"find": "0.2.9",
-		"grunt": "1.0.3",
-		"grunt-exec": "3.0.0",
-		"http-server": "0.11.1",
-		"husky": "1.3.1",
-		"istanbul": "0.4.5",
-		"istanbul-middleware": "0.2.2",
-		"jsdoc": "3.5.5",
-		"jsdox": "0.4.10",
-		"lint-staged": "8.1.0",
-		"mocha": "5.2.0",
-		"moment": "2.23.0",
-		"node-mocks-http": "^1.7.3",
-		"prettier": "1.10.2",
-		"rewire": "4.0.1",
-		"rx": "4.1.0",
-		"sinon": "7.2.2",
-		"sinon-chai": "3.3.0",
-		"snyk": "^1.122.0",
-		"stampit": "4.2.0",
-		"supertest": "3.3.0"
-	},
-	"snyk": true,
-	"lisk": {
-		"minVersion": "1.1.0-rc.0"
+		"bootstrap": "lerna bootstrap",
+		"clean": "lerna run clean",
+		"clean:node_modules": "lerna clean --yes",
+		"format": "lerna run format",
+		"lint": "lerna run lint",
+		"lint:fix": "lerna run lint:fix",
+		"test": "lerna run test",
+		"test:elements": "lerna run test --ignore=lisk-commander --ignore=lisk-framework --ignore=lisk-sdk --ignore=@liskhq/lisk-framework*",
+		"test:framework": "lerna run test --scope=lisk-framework",
+		"test:framework-plugins": "lerna run test --scope=@liskhq/lisk-framework-*",
+		"test:commander": "lerna run test --scope=lisk-commander",
+		"build": "lerna run build",
+		"init": "./scripts/init.sh"
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "lint-staged",
-			"pre-push":
-				"./node_modules/.bin/eslint $(git ls-files '*.js') && npm run check:dependencies"
+			"pre-commit": "lint-staged"
 		}
+	},
+	"devDependencies": {
+		"@types/node": "12.20.6",
+		"@typescript-eslint/eslint-plugin": "4.19.0",
+		"@typescript-eslint/parser": "4.19.0",
+		"eslint": "7.22.0",
+		"eslint-config-lisk-base": "2.0.0",
+		"eslint-plugin-import": "2.22.1",
+		"eslint-plugin-jest": "24.3.2",
+		"husky": "6.0.0",
+		"istanbul-lib-coverage": "3.0.0",
+		"istanbul-lib-report": "3.0.0",
+		"istanbul-reports": "3.0.0",
+		"lerna": "4.0.0",
+		"lint-staged": "10.5.4",
+		"prettier": "2.2.1",
+		"typescript": "4.2.3",
+		"yarn": "1.22.10"
 	}
 }

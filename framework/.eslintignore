@@ -1,0 +1,14 @@
+node_modules
+dapps
+logs/*.log
+npm-debug.log
+release
+ssl
+stacktrace*
+tmp
+dist-node
+jest.config*
+test/test_app/
+__mocks__
+.eslintrc.js
+test/**/setup.js
